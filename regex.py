@@ -1,4 +1,11 @@
 def metachar_proc(met_regex, met_string, met_length):
+    """Scans the metacharacter in the regular expression and handles the string depending on the metacharacter involved.
+    
+    \ - an escape sequence metacharacter. Any character subceding the '\' is a normal character instead of a metacharacter.
+    ? - a metacharacter that accepts chaaracter stream of size 0 or 1.
+    * - a metacharacter that accepts zero or more stream of characters.
+    + - a metacharacter that accepts one or more stream of characters
+    . - wildcard, can designate any character or value"""
     #metachar '?'
     if met_regex[1] == '?':
         if met_regex.startswith('.') is False:
@@ -6,6 +13,7 @@ def metachar_proc(met_regex, met_string, met_length):
                 if met_regex[0] == met_string[0]:
                     met_string = met_string[1:]
         else:
+        #below comparison is applicable for cases like - .?|aaa
             if len(met_regex) == 2:
                 return True
             for count in range(1):
